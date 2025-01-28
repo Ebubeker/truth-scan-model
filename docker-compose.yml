@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  ai-model:
+    build: .
+    container_name: ai-model-app
+    command: python index.py  # Or replace with your script name (e.g., predict.py)
+    volumes:
+      - .:/app  # Mount your project directory into the container
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    # Optional: If your script outputs results to a file or folder, mount that as a volume
+    # volumes:
+    #   - ./output:/app/output
+    stdin_open: true  # Keeps the container open for interactive use (if needed)
+    tty: true         # Keeps the terminal open for logs
